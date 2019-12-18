@@ -5,12 +5,11 @@ endpoint=$(sudo wg show wg0 endpoints | sed -n "s/^.*\s//p" | sed -n "s/:.*$//p"
 
 if [ "$hostIPAddress" == "$endpoint" ]
 then
-        echo "$hostIPAddress"
-        echo "They match!"
-        echo "$endpoint"
+        echo "DNS: $hostIPAddress"
+        echo "Endpoint: $endpoint"
 else
-        echo "$hostIPAddress"
-        echo "They don't match :("
-        echo "$endpoint"
-
+        echo "DNS: $hostIPAddress"
+        echo "Endpoint: $endpoint"
+        echo "Rebuilding VPN"
+        wg set "wg0" peer "$PUBLIC_KEY" endpoint "$ENDPOINT"
 fi
