@@ -11,11 +11,13 @@
 downloads=/config/data/install-packages
 scripts=/config/scripts
 
-cd $scripts
-curl -O https://raw.githubusercontent.com/BSPDevelopers/edgeos-resources/master/refresh-dns.sh
+cd ~
+curl https://raw.githubusercontent.com/BSPDevelopers/edgeos-resources/master/refresh-dns.sh --output refresh-dns.sh
+sudo install -o root -g root -m 0755 refresh-dns.sh /config/scripts/refresh-dns.sh
 
+sudo mkdir -p $downloads
 cd $downloads
-curl -LJO https://github.com/BSPDevelopers/edgeos-resources/raw/master/wireguard-v2.0-e50.deb
+curl -LJ https://github.com/BSPDevelopers/edgeos-resources/raw/master/wireguard-v2.0-e50.deb --output wireguard.deb
 
 for pkg in *; do
   dpkg-query -W --showformat='${Status}\n' $(dpkg --info "${pkg}" | grep "Package: " | awk -F' ' '{ print $NF}') > /dev/null 2>&1 || (dpkg -i ${pkg} && reboot now)
