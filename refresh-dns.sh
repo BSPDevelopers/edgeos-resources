@@ -1,13 +1,16 @@
 #!/bin/bash
 
-set -e
-shopt -s nocasematch
-shopt -s extglob
-export LC_ALL=C
+hostIPAddress=$(sudo host ipsec.broadstreet.ca | sed -n "s/.*IPv4 address //p")
+endpoint=$(sudo wg show wg0 endpoints | sed -n "s/^.*\s//p" | sed -n "s/:.*$//p")
 
-PUBLIC_KEY="YQFBWrpLk49iKjhCAPOJkHlPI+iJFbn1XK87Boz+UEI="
-ENDPOINT="test.test:51820"
+if [ "$hostIPAddress" == "$endpoint" ]
+then
+        echo "$hostIPAddress"
+        echo "They match!"
+        echo "$endpoint"
+else
+        echo "$hostIPAddress"
+        echo "They don't match :("
+        echo "$endpoint"
 
-[[ $(wg show "wg0" latest-handshakes) =~ ${PUBLIC_KEY//+/\\+}\  ([0-9]+) ]] || exit 0
-(( ($(date +%s) - ${BASH_REMATCH[1]}) > 135 )) || exit 0
-wg set "wg0" peer "$PUBLIC_KEY" endpoint "$ENDPOINT"
+fi
