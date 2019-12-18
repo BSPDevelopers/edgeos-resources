@@ -12,7 +12,7 @@ downloads=/config/data/install-packages
 scripts=/config/scripts
 
 cd $scripts
-curl -LJO https://github.com/BSPDevelopers/edgeos-resources/blob/master/refresh-dns.sh > refresh-dns.sh
+curl -O https://raw.githubusercontent.com/BSPDevelopers/edgeos-resources/master/refresh-dns.sh > refresh-dns.sh
 
 cd $downloads
 curl -LJO https://github.com/BSPDevelopers/edgeos-resources/blob/master/wireguard-v2.0-e50.deb > wireguard.deb
