@@ -14,5 +14,5 @@ else
         echo "DNS: $hostIPAddress"
         echo "Endpoint: $endpoint"
         echo "Rebuilding VPN"
-        wg set "wg0" peer "$PUBLIC_KEY" endpoint "$ENDPOINT"
+        sudo wg set "wg0" peer "$PUBLIC_KEY" endpoint "$ENDPOINT"
 fi
