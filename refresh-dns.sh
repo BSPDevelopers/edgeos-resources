@@ -1,6 +1,6 @@
 #!/bin/bash
 
-hostIPAddress=$(sudo host ipsec.broadstreet.ca | sed -n "s/.*IPv4 address //p")
+hostIPAddress=$(sudo host test.test | sed -n "s/.*IPv4 address //p")
 endpoint=$(sudo wg show wg0 endpoints | sed -n "s/^.*\s//p" | sed -n "s/:.*$//p")
 
 if [ "$hostIPAddress" == "$endpoint" ]
