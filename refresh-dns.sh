@@ -2,7 +2,7 @@
 
 hostIPAddress=$(sudo host ipsec.broadstreet.ca | sed -n "s/.*IPv4 address //p")
 endpoint=$(sudo wg show wg0 endpoints | sed -n "s/^.*\s//p" | sed -n "s/:.*$//p")
-PUBLIC_KEY=YQFBWrpLk49iKjhCAPOJkHlPI+iJFbn1XK87Boz+UEI=
+PUBLIC_KEY=JKq/jZVbUho/FOfzg6tKESiNpBQ6B0NvXeuLQSJn0To=
 ENDPOINT=ipsec.broadstreet.ca:51820
 
 
