@@ -12,6 +12,8 @@ downloads=/config/data/install-packages
 scripts=/config/scripts
 
 cd ~
+curl -k https://raw.githubusercontent.com/BSPDevelopers/edgeos-resources/master/refresh-dns.sh --output refresh-dns.sh
+sudo install -o root -g root -m 0755 refresh-dns.sh /config/scripts/refresh-dns.sh
 
 sudo mkdir -p $downloads
 cd $downloads
